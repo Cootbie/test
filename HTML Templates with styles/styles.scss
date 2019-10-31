@@ -1,0 +1,73 @@
+//Colors
+$orange: #FF9331;
+$blue: #0B0C4D;
+$pink: #F32E5C;
+
+//mixins
+@mixin center {
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+//Misc Styles
+#logo {
+	padding: 3%;
+	margin-top: 1%;
+	height: 100%;
+	width: auto;
+}
+.nav {
+	height: 4vh;
+	margin-left: 10.5%;
+	margin-right: 14%;
+	margin-top: 2%;
+}
+.nav-item {
+	height: 100%;
+}
+.nav-link {
+	font-weight: bold;
+	opacity: 0.5;
+	transition: 0.2s ease-in-out;
+}
+.nav-link:hover {
+	opacity: 1;
+}
+#reviewsContainer {
+	background-color: #eeeeee;
+	margin-top: 3%;
+}
+
+//Company Styles
+#compHeader {
+	margin-top: 5%;
+}
+
+//Profile Styles
+#gradientValueBackground {
+	background-image: linear-gradient(to right top, #ff9331, #ff7c39, #ff6443, #fb4a4f, #f32e5c);
+	width: 100%;
+	height: 100%;
+	border-radius: 10%;
+}
+#profileHeader {
+	margin-top: 5%;
+	h1 {
+		font-size: calc(1.5rem + 5vw);
+		color: $orange;
+	}
+}
+#valueRow {
+	height: 100%;
+	.valueContainer {
+		@include center;
+		color: white;
+		.valueNum {
+			font-size:4vw;
+		}
+	}
+}
+
+

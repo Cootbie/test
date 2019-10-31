@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Company Profile | Cootbie</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap Links -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!--My Stuff-->
+<link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+</head>
+<body>
+	<ul class="nav .navbar-expand">
+		<li class="nav-item mr-auto">
+			<img id = "logo" src = "imgs/normalLogo.svg" class = "img-fluid"/>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">Companies</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">Profile</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">Home</a>
+		</li>
+	</ul>
+	<div id = "compHeader" class = "container-fluid">
+		<div id = "compLogoRow" class = "row justify-content-center">
+			<div class = "col-8 text-center">
+				<img src = "imgs/microsoft.png" class = "companyLogo img-fluid">
+			</div>
+		</div>
+		<div class = "row justify-content-center">
+			<div class = "col-8 text-center">
+				<h2>Overall Grade: A</h2>
+			</div>
+		</div>
+		<div class = "row justify-content-center">
+			<div class = "col-8 text-center">
+				<button class = "btn">Leave a Review</button>
+			</div>
+		</div>
+	</div>
+	<div id = "reviewsContainer" class = "container">
+		<div class = "row">
+			<div class = "col-md-2 text-center">
+				<h1>Reviews</h1>
+			</div>
+		</div>
+	</div>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyBgHjo0jlzYqmvaouBMZNgXuJs7ll0HrhI",
+			authDomain: "cootbie.firebaseapp.com",
+			databaseURL: "https://cootbie.firebaseio.com",
+			projectId: "cootbie",
+			storageBucket: "cootbie.appspot.com",
+			messagingSenderId: "667827955273",
+			appId: "1:667827955273:web:4701873dfe368e59184198"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+	</script>
+</body>
+</html>
