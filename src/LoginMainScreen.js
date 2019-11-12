@@ -14,7 +14,7 @@ export default class LoginMainScreen extends Component {
 
   constructor(props) {
     super(props);
-
+    
     this.state = {
     };
   }
@@ -27,9 +27,9 @@ export default class LoginMainScreen extends Component {
           if (firebase.auth().currentUser) {
             if (this._elFirebaseLogin)
               this._elFirebaseLogin.saveCurrentUserDataInApp();
-
+            
             this.props.appActions.goToScreen('writeareview');
-
+            
           }
         }
         unregisterAuthObserver();
@@ -40,10 +40,31 @@ export default class LoginMainScreen extends Component {
   onClick_elText2 = (ev) => {
     // Go to screen 'Companies'
     this.props.appActions.goToScreen('companies', { transitionId: 'fadeIn' });
-
+  
   }
 
-
+  dynamicSearch() {
+    //Creating array of matched company names
+    var matchedComps = [];
+    var filter = $("#searchbar").val().toUpperCase();
+    companyNames.forEach(company => {
+      if (company.name.toUpperCase().indexOf(filter) > -1) {
+        matchedComps.push(company)
+      }
+    });
+    
+    //Displaying matched companies
+    $(".companyResults").empty();
+    matchedComps.forEach(company => {
+      $(".companyResults").append(
+      `<div id = 'searchItem${company.id}'>
+        <p>${company.name}</p>
+      </div>`
+      )
+    })
+  }
+  
+  
   render() {
     let layoutFlowStyle = {};
     let baseStyle = {};
@@ -54,7 +75,7 @@ export default class LoginMainScreen extends Component {
       layoutFlowStyle.height = '100vh';
       layoutFlowStyle.overflow = 'hidden';
     }
-
+    
     const style_elBackground = {
       width: '100%',
       height: '100%',
@@ -88,44 +109,60 @@ export default class LoginMainScreen extends Component {
       cursor: 'pointer',
       pointerEvents: 'auto',
      };
+    
+     //Searchbar functionality
+    db = firebase.firestore();
+    const Names = db.collection("company_names");
+    var companyNames = [];
+    //Grabbing names from database
+    Names.get().then(function(results) {
+      companyNames.push(results);
+    })
 
+    
+     
     return (
       <div className="AppScreen LoginMainScreen" style={baseStyle}>
         <div className="background">
           <div className='containerMinHeight elBackground' style={style_elBackground_outer}>
             <div className="appBg" style={style_elBackground} />
           </div>
-
+          
           <div className="containerMinHeight elN00021restaurant" style={style_elN00021restaurant} />
         </div>
-
+        
         <div className="layoutFlow" style={layoutFlowStyle}>
           <div className='elImage'>
             <div className="" style={style_elImage} />
           </div>
-
+          
           <div className='elText'>
             <div className="headlineFont" style={style_elText}>
               <div>{this.props.locStrings.loginmain_text_758871}</div>
             </div>
           </div>
-
+          
           <div className='elFirebaseLogin'>
             <div className="" style={style_elFirebaseLogin}>
               <FirebaseLogin ref={(el)=> this._elFirebaseLogin = el} appActions={this.props.appActions} deviceInfo={this.props.deviceInfo} locStrings={this.props.locStrings} />
             </div>
           </div>
-
+          
           <div className='elText2'>
             <div className="baseFont" style={style_elText2} onClick={this.onClick_elText2} >
               <div>{this.props.locStrings.loginmain_text2_130360}</div>
             </div>
           </div>
-        </div>
 
+          <div className = "searchbarContainer">
+            <input id = "searchbar" type = "text" placeholder = "search..."/>
+          <div className = "companyResults"></div>
+        </div>
+        </div>
+        
       </div>
     )
   }
-
+  
 
 }
